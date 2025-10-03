@@ -17,7 +17,7 @@ import orderRoute from './routes/orderRoute.js';
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:['https://e-commerce-frontend-mee4.onrender.com','http://localhost:5174'],
+    origin:['https://e-commerce-frontend-mee4.onrender.com','https://e-commerce-admin-8byx.onrender.com'],
     credentials: true,
 
 }))
