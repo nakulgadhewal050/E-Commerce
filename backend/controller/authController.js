@@ -28,8 +28,8 @@ export const register = async (req, res) => {
         let token = await genToken(user._id);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true, // Set to true if using HTTPS
-            sameSite: 'none', // Helps prevent CSRF attacks
+            secure: process.env.NODE_ENV === 'production', // Only secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         })
         return res.status(201).json({ user })
@@ -58,8 +58,8 @@ export const login = async (req, res) => {
         let token = await genToken(user._id);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true, // Set to true if using HTTPS
-            sameSite: 'none', // Helps prevent CSRF attacks
+            secure: process.env.NODE_ENV === 'production', // Only secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         })
         return res.status(201).json({ message: "Login successful" });
@@ -100,8 +100,8 @@ export const googleLogin = async (req, res) => {
         let token = await genToken(user._id);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true, // Set to true if using HTTPS
-            sameSite: 'none', // Helps prevent CSRF attacks
+            secure: process.env.NODE_ENV === 'production', // Only secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         })
         return res.status(201).json({ message: "Login successful", user });
@@ -150,8 +150,8 @@ export const adminLogin = async (req, res) => {
         // Set cookie with proper options
         res.cookie("adminToken", token, {
             httpOnly: true,
-            secure: true, // Set to false for development (localhost)
-            sameSite: 'none',
+            secure: process.env.NODE_ENV === 'production', // Only secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             path: '/' // Ensure cookie is available for all paths
         });
@@ -182,8 +182,8 @@ export const adminLogout = async (req, res) => {
     try {
         res.clearCookie("adminToken", {
             httpOnly: true,
-            secure: true, // Set to false for development (localhost)
-            sameSite: 'none',
+            secure: process.env.NODE_ENV === 'production', // Only secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
             path: '/'
         });
         return res.status(200).json({ 
