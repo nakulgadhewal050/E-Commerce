@@ -161,6 +161,7 @@ export const adminLogin = async (req, res) => {
         res.json({
             success: true,
             message: "Admin login successful",
+            token: token, // Also send token in response for frontend to store
             admin: {
                 email: email,
                 role: 'admin'
