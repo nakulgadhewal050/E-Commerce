@@ -28,3 +28,17 @@ services:
     buildFilter:
       paths:
       - frontend/**
+
+  # Admin static site
+  - type: web
+    name: ecommerce-admin
+    env: static
+    plan: free
+    buildCommand: cd admin && npm install && npx vite build
+    staticPublishPath: ./admin/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+    buildFilter:
+      paths:
+      - admin/**
