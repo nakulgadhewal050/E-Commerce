@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm install && vite build",
+    "build": "vite build",
     "postbuild": "echo 'Build completed successfully'",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -1,0 +1,30 @@
+services:
+  # Backend API service
+  - type: web
+    name: ecommerce-backend-api
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: NODE_ENV
+        value: production
+    buildFilter:
+      paths:
+      - backend/**
+
+  # Frontend static site
+  - type: web
+    name: ecommerce-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+    buildFilter:
+      paths:
+      - frontend/**
