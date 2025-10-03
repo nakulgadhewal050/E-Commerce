@@ -11,6 +11,16 @@ services:
         value: 22.16.0
       - key: NODE_ENV
         value: production
+      - key: JWT_SECRET
+        value: nakul@123
+      - key: ADMIN_EMAIL
+        value: admin@onecart.com
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: PORT
+        value: 4000
+      - key: CLIENT_URL
+        value: https://e-commerce-frontend-mee4.onrender.com
     buildFilter:
       paths:
       - backend/**
